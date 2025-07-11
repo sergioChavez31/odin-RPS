@@ -21,6 +21,10 @@ function getHumanChoice() {
     return prompt("Enter Rock, Paper, or scissors!").toLowerCase();
 }
 
+
+let humanScore = 0;
+let computerScore = 0;
+
 function playRound(humanChoice, computerChoice) {
     humanChoice = humanChoice.toLowerCase();
     if (humanChoice === "rock") {
@@ -69,14 +73,26 @@ function playRound(humanChoice, computerChoice) {
 }
 
 
-let humanScore = 0;
-let computerScore = 0;
+function playGame() {
+    console.log("Welcome to RPS!")
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-console.log("User choose: " +humanSelection);
-console.log("PC choose: " + computerSelection)
+    for (let i = 0; i < 5; i++) {
+        console.log(`Round ${(i + 1)}`);
+        let humanChoice = getHumanChoice();
+        let computerChoice = getComputerChoice();
+        playRound(humanChoice, computerChoice);
+        console.log(`Current Score: User ${humanScore} - ${computerScore} Computer`)
+    }
 
-playRound(humanSelection, computerSelection);
-console.log("User's points: " + humanScore);
-console.log("PC's points: " + computerScore);
+    if (humanScore > computerScore) {
+        alert("Congratulations, Player!");
+    } else if (computerScore < humanScore) {
+        alert("GGs, the computer won...");
+    } else {
+        alert("You both tied... *yawn*");
+    }
+    humanScore = 0;
+    computerScore = 0;
+}
+
+playGame()
